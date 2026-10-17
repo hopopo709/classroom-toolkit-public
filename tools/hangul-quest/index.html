@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#fff8ec">
+<meta name="description" content="초등학생을 위한 훈민정음 역사·원리 미션 게임. 인터넷 연결이나 로그인 없이 즐기는 한글 탐험.">
+<title>훈민정음 탐험대 · 교실 도구함</title>
+<style>
+:root{font-family:"Pretendard","Noto Sans KR","Malgun Gothic",system-ui,sans-serif;color:#25314d;background:#fff8ec;font-synthesis:none}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(circle at 5% 8%,#ffe2b3 0,transparent 34%),radial-gradient(circle at 95% 95%,#dbeafd 0,transparent 38%),#fff8ec}
+button,a{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}button:focus-visible,a:focus-visible{outline:3px solid #3162d6;outline-offset:3px}.hidden{display:none!important}
+.layout{width:min(920px,calc(100% - 30px));margin:auto;padding:23px 0 50px}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:27px}.back{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:750;color:#566483;background:#ffffffb8;border:1px solid #e8e1d7;border-radius:100px;padding:11px 14px}.brand{font-size:12px;letter-spacing:.11em;font-weight:850;color:#6d758c}
+.panel{border:2px solid #273653;border-radius:26px;background:#fffdfa;box-shadow:7px 9px 0 #273653;overflow:hidden}
+.hero{position:relative;text-align:center;padding:65px 32px 50px;overflow:hidden}.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;width:180px;height:180px;z-index:0}.hero:before{background:#fae8b6;top:-95px;left:-65px}.hero:after{background:#e2edff;bottom:-110px;right:-65px}
+.hero>*{position:relative;z-index:1}.eyebrow{display:inline-block;background:#ffe8a2;border:1.5px solid #273653;border-radius:99px;padding:9px 18px;font-size:12px;font-weight:900;letter-spacing:.07em}
+.emblem{display:flex;align-items:center;justify-content:center;gap:8px;margin:27px auto 18px}.emblem span{display:grid;place-items:center;background:#fff1bf;border:2px solid #273653;box-shadow:3px 4px 0 #273653;border-radius:15px;width:63px;height:66px;font-size:35px;font-weight:900}.emblem span:nth-child(2){transform:translateY(-8px);background:#d4edfd}.emblem span:nth-child(3){background:#fcd6c6}
+h1{font-size:clamp(38px,8vw,63px);letter-spacing:-.08em;margin:16px 0 12px;line-height:1.25}p{line-height:1.75}.hero-desc{font-size:16px;color:#556179;margin:12px auto 27px;word-break:keep-all}
+.primary{border:2px solid #273653;border-radius:14px;background:#f9b846;color:#18223c;font-size:18px;font-weight:900;padding:15px 24px;min-height:56px;box-shadow:3px 4px 0 #273653;transition:transform .15s}.primary:hover{transform:translateY(-2px)}.primary:disabled{opacity:.55;cursor:default}
+.small{font-size:12px;color:#747e93;margin:20px 0 0}.guide{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}.guide div{background:#fff;border:1px solid #ebdfcf;border-radius:15px;padding:14px 12px;text-align:center}.guide strong{display:block;font-size:14px}.guide span{display:block;margin-top:3px;font-size:12px;color:#64708b}
+.game{padding:29px clamp(19px,5vw,52px) 35px}.statusline{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:13px;font-weight:800;color:#5a6683}
+.progress{height:14px;border:1.5px solid #273653;background:#e9eaf2;border-radius:100px;overflow:hidden;margin:13px 0 30px}.progress>div{height:100%;background:#f9b846;width:0;transition:width .3s}
+.story{background:#e9f3ff;border:1.5px solid #c5d9f1;border-radius:16px;padding:17px 20px;margin-bottom:26px}.story .tag{font-size:12px;font-weight:900;color:#3463af}.story p{margin:7px 0 0;color:#344564;font-size:14px}
+.quest-head{display:flex;gap:12px;align-items:center}.quest-badge{display:grid;place-items:center;width:46px;height:46px;background:#fff0b6;border:2px solid #273653;border-radius:12px;font-size:26px;font-weight:900;flex-shrink:0}
+.chapter{margin:0;font-size:13px;color:#727d92;font-weight:800}.question{font-size:clamp(23px,5vw,32px);letter-spacing:-.045em;line-height:1.43;margin:17px 0 24px;word-break:keep-all}
+.answers{display:grid;gap:11px}.choice{width:100%;display:flex;align-items:center;gap:16px;text-align:left;border:2px solid #dce1e9;border-radius:14px;background:#fff;padding:13px 16px;min-height:66px;color:#28324b;font-weight:800;font-size:16px}.choice:not(:disabled):hover{border-color:#5988e1;background:#f0f7ff}.choice:disabled{cursor:default}.choice .num{border-radius:9px;background:#eaf0fa;width:33px;height:33px;display:grid;place-items:center;flex-shrink:0;font-size:14px}.choice.correct{border-color:#4d996f;background:#e1f7e9}.choice.wrong{border-color:#c06c61;background:#fff0eb}.choice.correct .num{background:#9dd9b2}
+.actionline{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-top:23px}
+.hint{border:1.5px solid #c9d1de;background:#fff;border-radius:12px;padding:12px 17px;font-size:13px;color:#3d5378;font-weight:850;min-height:46px}.hint:disabled{opacity:.6;cursor:default}
+.feedback{margin-top:18px;background:#f4f7ff;border-radius:14px;padding:14px 17px;border-left:5px solid #5b8bce;color:#273e65;font-size:14px;line-height:1.65;min-height:50px;word-break:keep-all}
+.feedback.success{background:#e9f7e9;border-color:#479464;color:#2b6343}.feedback.try{background:#fff5e8;border-color:#d88c3c;color:#845022}.next{margin-left:auto}
+.finish{text-align:center;padding:55px 27px}.finish-mark{font-size:75px;line-height:1.3}.finish h2{font-size:clamp(28px,6vw,43px);letter-spacing:-.055em;margin:8px 0 12px}.finish p{color:#53607a}.result-banner{border:2px dashed #d4bb76;background:#fff5d7;border-radius:18px;padding:20px;margin:24px auto;max-width:550px}.result-banner strong{display:block;color:#33456b;font-size:23px}.result-banner span{font-size:13px;color:#6c7281}.finish-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:11px}.secondary{border:1.5px solid #283753;border-radius:13px;background:#fff;padding:14px 20px;font-weight:800}
+.footer{font-size:12px;color:#7d8090;text-align:center;line-height:1.8;margin-top:24px}
+@media(max-width:570px){.hero{padding:44px 16px 34px}.topbar{align-items:flex-start}.guide{grid-template-columns:1fr}.guide div{display:flex;gap:9px;justify-content:center}.guide span{margin:0}.game{padding-top:23px}.actionline .next{width:100%}.question{margin-top:12px}.panel{box-shadow:4px 5px 0 #273653}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;animation:none!important}}
+@media print{body{background:white}.topbar,.guide,.footer,.finish-actions,.small{display:none!important}.layout{width:100%;padding:0}.panel{border:0;box-shadow:none}.finish{padding:80px 20px}}
+</style>
+</head>
+<body>
+<div class="layout">
+<header class="topbar"><a class="back" href="../../index.html#/tools">← 교실 도구함으로</a><span class="brand">CLASSROOM · HANGUL QUEST</span></header>
+<main class="panel">
+<section class="hero" id="start-screen" aria-labelledby="game-title">
+<div class="eyebrow">초등학생을 위한 한글 이야기 게임</div>
+<div class="emblem" aria-hidden="true"><span>ㄱ</span><span>ㅏ</span><span>ㅎ</span></div>
+<h1 id="game-title">훈민정음<br>탐험대</h1>
+<p class="hero-desc">시간 여행을 떠나 세종대왕의 비밀을 찾아보자!<br>네 가지 장소에서 문제를 풀고 <strong>한글 조각 8개</strong>를 모아 봐.</p>
+<button class="primary" id="start-button" type="button">탐험 시작하기 →</button>
+<p class="small">약 5분 · 총 8문제 · 회원가입 및 개인정보 입력 없음</p>
+</section>
+<section class="game hidden" id="game-screen" aria-labelledby="question-title">
+<div class="statusline"><span id="step-text">첫 번째 문제</span><span id="piece-count">조각 0 / 8</span></div>
+<div class="progress" role="progressbar" id="progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="8" aria-label="모은 한글 조각"><div id="progress-fill"></div></div>
+<div class="story"><div class="tag" id="story-label"></div><p id="story-text"></p></div>
+<div class="quest-head"><span class="quest-badge" id="quest-badge" aria-hidden="true">✦</span><p class="chapter" id="chapter-label"></p></div>
+<h2 class="question" id="question-title" tabindex="-1"></h2>
+<div class="answers" id="answers" role="group" aria-labelledby="question-title"></div>
+<div class="feedback hidden" role="status" aria-live="polite" id="feedback"></div>
+<div class="actionline"><button type="button" class="hint" id="hint-button">💡 힌트 보기</button><button class="primary next hidden" type="button" id="next-button">다음 문제 →</button></div>
+</section>
+<section class="finish hidden" id="finish-screen" aria-labelledby="finish-title">
+<div class="finish-mark" aria-hidden="true">🏆</div>
+<p class="eyebrow">탐험 완료!</p>
+<h2 id="finish-title" tabindex="-1">한글 조각을 모두 모았어!</h2>
+<p>훈민정음이 어떻게 만들어졌는지 조금 더 알게 되었니?<br>우리말과 우리글을 소중하게 사용하는 탐험대원이 되어 보자.</p>
+<div class="result-banner"><strong>훈민정음 탐험대 · 임무 성공</strong><span id="result-text">한글 조각 8개 획득</span></div>
+<div class="finish-actions"><button class="secondary" id="restart-button" type="button">↻ 다시 탐험하기</button><button class="primary" id="print-button" type="button">완료증 인쇄하기</button></div>
+<p class="small">완료증에는 이름이 적히지 않아요. 종이 또는 PDF로 인쇄할 수 있어요.</p>
+</section>
+</main>
+<div class="guide" aria-label="탐험 안내">
+<div><strong>① 장소 탐험</strong><span>짧은 이야기를 읽어요</span></div>
+<div><strong>② 문제 해결</strong><span>보기 3개 중에서 골라요</span></div>
+<div><strong>③ 조각 모으기</strong><span>틀려도 다시 도전할 수 있어요</span></div>
+</div>
+<footer class="footer">교실 도구함에서 만든 초등 한글 역사 입문 게임 · 학습용으로 구성한 가상 이야기입니다.<br>작동 및 채점은 현재 브라우저 안에서만 이루어집니다.</footer>
+</div>
+<script>
+(function(){
+"use strict";
+var chapters=[
+{place:"1장 · 왕의 서재",badge:"王",story:"조선 시대 궁궐에 도착했어! 세종대왕이 백성의 말을 글로 적기 쉽게 하려고 새로운 글자를 만들고 있어.",items:[
+{q:"훈민정음을 만든 임금은 누구일까?",a:["세종대왕","태조","정조"],right:0,hint:"오늘날 '세종대왕'이라는 이름으로 널리 알려진 임금이야.",ex:"세종대왕은 백성이 자신의 말을 글로 나타낼 수 있도록 훈민정음을 만들었어."},
+{q:"훈민정음이 세상에 널리 알려진(반포된) 해는?",a:["1392년","1446년","1592년"],right:1,hint:"훈민정음을 만든 해는 1443년, 공식적으로 반포한 해는 그보다 3년 뒤야.",ex:"훈민정음은 1443년에 창제되었고 1446년에 반포되었어."}]},
+{place:"2장 · 소리 연구소",badge:"ㄱ",story:"이번엔 글자를 연구하는 곳이야. 기본 자음은 소리를 낼 때의 발음 기관 모양을 본떠 만들었어.",items:[
+{q:"입술의 모양을 본떠 만든 기본 자음은?",a:["ㄴ","ㅁ","ㅅ"],right:1,hint:"입술을 다물면 네모난 모양처럼 보이기도 해.",ex:"ㅁ은 입술 모양, ㄴ은 혀 모양을 본떠 만들었어."},
+{q:"혀끝이 윗잇몸에 닿는 모양을 본뜬 기본 자음은?",a:["ㅇ","ㅁ","ㄴ"],right:2,hint:"'나'의 첫 자음이야.",ex:"ㄴ은 혀끝이 윗잇몸에 닿는 모습을 본뜬 기본 자음이야."}]},
+{place:"3장 · 모음 정원",badge:"ㆍ",story:"여기에는 옛 모음을 만드는 세 가지 생각이 숨어 있어. 옛 기본 모음 ㆍ, ㅡ, ㅣ는 하늘·땅·사람을 나타내지.",items:[
+{q:"옛 기본 모음 'ㆍ'(아래아)가 나타내는 것은?",a:["하늘","땅","사람"],right:0,hint:"머리 위로 넓게 펼쳐진 곳을 떠올려 봐.",ex:"옛 기본 모음 ㆍ는 하늘, ㅡ는 땅, ㅣ는 사람을 나타내."},
+{q:"옛 기본 모음 'ㅡ'가 나타내는 것은?",a:["사람","하늘","땅"],right:2,hint:"평평한 선을 떠올려 봐.",ex:"ㅡ는 평평한 땅을, ㅣ는 서 있는 사람을 나타내는 옛 기본 모음이야."}]},
+{place:"4장 · 말의 광장",badge:"말",story:"마지막 장소야! 사람들이 자신의 생각을 글로 나눌 수 있는 세상을 떠올리며 한글의 의미를 생각해 보자.",items:[
+{q:"'훈민정음'이라는 이름의 뜻은 무엇일까?",a:["백성을 가르치는 바른 소리","왕의 비밀 기록","노래를 만드는 특별한 소리"],right:0,hint:"'훈민'은 백성을 가르친다는 뜻, '정음'은 바른 소리라는 뜻이야.",ex:"훈민정음은 '백성을 가르치는 바른 소리'라는 뜻이야."},
+{q:"우리말을 소중히 쓰는 대화는 어느 것일까?",a:["네 생각은 틀렸어. 그만 말해.","나는 이렇게 생각해. 네 생각도 궁금해!","네 말을 듣지 않을 거야."],right:1,hint:"서로의 생각을 존중하며 말하는 보기를 골라 봐.",ex:"상대방의 생각을 존중하고 자기 생각을 분명하게 전하는 것도 우리말을 소중하게 쓰는 방법이야."}]}
+];
+var questions=[];chapters.forEach(function(c,ci){c.items.forEach(function(item,qi){questions.push({chapter:ci,item:item,local:qi});});});
+var screenStart=document.getElementById("start-screen"),screenGame=document.getElementById("game-screen"),screenFinish=document.getElementById("finish-screen");
+var answers=document.getElementById("answers"),feedback=document.getElementById("feedback"),hintButton=document.getElementById("hint-button"),nextButton=document.getElementById("next-button");
+var position=0,solved=false,wrongAttempts=0,hints=0,hintShown=false;
+function show(which){screenStart.classList.toggle("hidden",which!==0);screenGame.classList.toggle("hidden",which!==1);screenFinish.classList.toggle("hidden",which!==2);}
+function setFeedback(message,type){feedback.textContent=message;feedback.className="feedback"+(type?" "+type:"");}
+function paint(){
+ var current=questions[position],chapter=chapters[current.chapter],item=current.item;
+ solved=false;hintShown=false;feedback.className="feedback hidden";feedback.textContent="";nextButton.classList.add("hidden");hintButton.disabled=false;hintButton.textContent="💡 힌트 보기";
+ document.getElementById("step-text").textContent="문제 "+(position+1)+" / "+questions.length;
+ document.getElementById("piece-count").textContent="조각 "+position+" / "+questions.length;
+ document.getElementById("progress").setAttribute("aria-valuenow",String(position));
+ document.getElementById("progress-fill").style.width=String(position/questions.length*100)+"%";
+ document.getElementById("story-label").textContent=chapter.place;
+ document.getElementById("story-text").textContent=chapter.story;
+ document.getElementById("quest-badge").textContent=chapter.badge;
+ document.getElementById("chapter-label").textContent=chapter.place+" · 미션 "+(current.local+1)+"/"+chapter.items.length;
+ document.getElementById("question-title").textContent=item.q;
+ answers.replaceChildren();
+ item.a.forEach(function(value,i){
+  var button=document.createElement("button");button.type="button";button.className="choice";button.setAttribute("aria-label",(i+1)+"번 "+value);
+  var number=document.createElement("span");number.className="num";number.textContent=String(i+1);
+  var label=document.createElement("span");label.textContent=value;button.append(number,label);
+  button.addEventListener("click",function(){choose(i,button);});answers.append(button);
+ });
+ document.getElementById("question-title").focus();
+}
+function choose(index,button){
+ if(solved)return;
+ var item=questions[position].item;
+ answers.querySelectorAll("button").forEach(function(el){el.classList.remove("wrong");});
+ if(index!==item.right){wrongAttempts++;button.classList.add("wrong");setFeedback("아쉽지만 다시 생각해 보자! 힌트를 눌러도 좋아.","try");return;}
+ solved=true;button.classList.add("correct");
+ answers.querySelectorAll("button").forEach(function(el){el.disabled=true;});
+ hintButton.disabled=true;setFeedback("정답이야! ✨ "+item.ex,"success");
+ nextButton.textContent=position===questions.length-1?"탐험 완료하기 →":"다음 문제 →";nextButton.classList.remove("hidden");nextButton.focus();
+}
+function start(){position=0;wrongAttempts=0;hints=0;show(1);paint();}
+document.getElementById("start-button").addEventListener("click",start);
+document.getElementById("restart-button").addEventListener("click",start);
+hintButton.addEventListener("click",function(){
+ if(solved||hintShown)return;hintShown=true;hints++;hintButton.textContent="힌트를 확인했어";
+ setFeedback("💡 "+questions[position].item.hint,"");
+});
+nextButton.addEventListener("click",function(){
+ if(!solved)return;position++;
+ if(position<questions.length){paint();return;}
+ document.getElementById("result-text").textContent="한글 조각 "+questions.length+"개 획득 · 힌트 "+hints+"회 · 다시 도전 "+wrongAttempts+"회";
+ show(2);document.getElementById("finish-title").focus();
+});
+document.getElementById("print-button").addEventListener("click",function(){window.print();});
+document.addEventListener("keydown",function(ev){
+ if(screenGame.classList.contains("hidden")||ev.altKey||ev.ctrlKey||ev.metaKey||ev.repeat)return;
+ if(!solved&&/^[1-3]$/.test(ev.key)){var choice=answers.children[Number(ev.key)-1];if(choice)choice.click();}
+});
+})();
+</script>
+</body>
+</html>
