@@ -1,0 +1,17 @@
+data/
+.env
+.env.*
+!.env.example
+*.sqlite*
+*.db*
+*.log
+*.pdf
+*.xlsx
+*.xls
+*.xlsm
+*.csv
+*.json
+*.zip
+node_modules/
+__pycache__/
+.DS_Store
